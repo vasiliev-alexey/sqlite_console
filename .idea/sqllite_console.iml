@@ -2,12 +2,19 @@
 <module type="CPP_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/FileManager.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/utils.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/FileManager.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/utils.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/managers/FileManager.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/managers/DBManager.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/managers/ConsoleDisplayManager.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/managers/FileManager.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/managers/ParamsManager.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/managers/ConsoleDisplayManager.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/managers/DBManager.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/managers/ParamsManager.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/managers/DisplayManager.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/utils/CLog.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/utils/CLog.h" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
