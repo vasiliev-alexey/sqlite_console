@@ -24,7 +24,7 @@ public:
 
     int setDb(std::string dbName);
 
-    void setAutoCommit(bool autoCommit);
+
 
 private:
       int callback(void *NotUsed, int argc, char **argv, char **szColName);

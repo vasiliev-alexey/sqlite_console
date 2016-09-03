@@ -15,9 +15,7 @@ public:
 
 
     FileManager(string fname);
-
     std::vector<string> readInstructions();
-
     bool isValid() { return  _valid ;};
 
 private:

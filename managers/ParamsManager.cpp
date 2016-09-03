@@ -74,7 +74,7 @@ vector<string> ParamsManager::convertParamToVector(char **pString, size_t size) 
     return r;
 }
 
-ParamsManager::ParamsManager(int argc, char **argv) : isValid(false) {
+ParamsManager::ParamsManager(int argc, char **argv) : _isValid(false) {
     CLog::SetLevel(CLog::Debug);
 
     if (argc < 2) {
@@ -108,13 +108,13 @@ ParamsManager::ParamsManager(int argc, char **argv) : isValid(false) {
         CLog::Write(CLog::Debug, string("ParamHolder=" + to_string(paramHolder.size())).c_str());
 
 
-        isValid = true;
+        _isValid = true;
     }
 }
 
 
 bool ParamsManager::isParamValid() {
-    return isValid;
+    return _isValid;
 }
 
 string ParamsManager::getParamValue(string paramKey) {

@@ -3,37 +3,24 @@
 //
 #include <map>
 #include <vector>
-
 #ifndef SQLLITE_CONSOLE_UTILS_H
 #define SQLLITE_CONSOLE_UTILS_H
-
-
 using namespace std;
-
 class ParamsManager {
-
 
 public:
     ParamsManager(int argc, char *argv[]);
-
     bool isParamValid();
-
     string getParamValue(string paramKey);
-
     bool checkParamValue(string paramKey);
-
-    map<string, string> paramHolder;
     ~ParamsManager();
 private:
     vector<string> convertParamToVector(char **pString, size_t size);
-
     bool checkParam(vector<string> params);
-
-    bool isValid;
-
+    bool _isValid;
+    map<string, string> paramHolder;
     std::map<string, string> convertToMap(vector<string> param);
-    //  map<string , string> paramHolder;
-};
 
+};
 
 #endif //SQLLITE_CONSOLE_UTILS_H
