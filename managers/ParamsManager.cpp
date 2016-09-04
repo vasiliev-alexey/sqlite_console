@@ -21,11 +21,14 @@ std::map<string, string> ParamsManager::convertToMap(vector<string> param) {
     return paramMap;
 }
 
-
 static void printHelp() {
     std::cout << "Допустимые ключи:\n";
-    std::cout << "-d  = имя базы данных\n";
-    std::cout << "-f  = путь к файлу с коммандой для БД\n";
+    std::cout << "-d   = Имя базы данных\n";
+    std::cout << "-f   = Путь к файлу с коммандой для БД\n";
+    std::cout << "-q   = Инструкция задана из  коммандной строки";
+    std::cout << "-o   = Режим вывода  результатов FILE – вывод в файл, CONSOLE – вывод в Консоль";
+    std::cout << "-of  = Файл с результатами выполнения инструкций";
+    std::cout << "-h   = Помощь";
 }
 
 bool checkParamCode(string paramKey, string paramValue) {
@@ -65,22 +68,18 @@ bool ParamsManager::checkParam(vector<string> params) {
 }
 
 vector<string> ParamsManager::convertParamToVector(char **pString, size_t size) {
-
     vector<string> r;
     for (int i = 1; i < size; i++) {
         r.push_back(std::string(pString[i]));
     }
-
     return r;
 }
 
 ParamsManager::ParamsManager(int argc, char **argv) : _isValid(false) {
     CLog::SetLevel(CLog::Debug);
-
     if (argc < 2) {
-       return;
+        return;
     }
-
     if (argc > 1) {
         for (int i = 1; i < argc; i++) {
             string arg = argv[i];
@@ -88,51 +87,36 @@ ParamsManager::ParamsManager(int argc, char **argv) : _isValid(false) {
             if (i < argc - 1 && (arg == "-f" || arg == "-h")) {
                 arg2 = argv[i + 1];;
             }
-
             if (arg == "-h") {
                 printHelp();
-
                 return;
             }
             if (!checkParamCode(arg, arg2)) {
                 std::cout << "Параметры указаны не верно:\n";
                 printHelp();
-
                 return;
             }
         }
         vector<string> tmp = convertParamToVector(argv, argc);
-
         paramHolder = convertToMap(tmp);
-
         CLog::Write(CLog::Debug, string("ParamHolder=" + to_string(paramHolder.size())).c_str());
-
-
         _isValid = true;
     }
 }
-
 
 bool ParamsManager::isParamValid() {
     return _isValid;
 }
 
 string ParamsManager::getParamValue(string paramKey) {
-
-
     if (paramHolder.find(paramKey) != paramHolder.end()) {
         return paramHolder[paramKey];
     } else {
         throw "No parmam by key" + paramKey;
     }
-
-
 }
 
-
 bool ParamsManager::checkParamValue(string paramKey) {
-
-
     if (paramHolder.find(paramKey) != paramHolder.end()) {
         return true;
     } else {
@@ -141,6 +125,5 @@ bool ParamsManager::checkParamValue(string paramKey) {
 }
 
 ParamsManager::~ParamsManager() {
-
 }
 

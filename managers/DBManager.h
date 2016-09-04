@@ -4,32 +4,26 @@
 
 #ifndef SQLLITE_CONSOLE_DBMANAGER_H
 #define SQLLITE_CONSOLE_DBMANAGER_H
-
-#include <sqlite3.h>
 #include <string>
+#include <vector>
 #include "DisplayManager.h"
-
 
 class DBManager {
 
 public:
 
-    DBManager(DisplayManager *manager , bool autoCommit = false);
+    DBManager(DisplayManager *manager , string dbName , bool autoCommit = false);
 
     static bool checkDbExists(std::string dbName);
 
-    bool executeNonQuery(std::string command);
+    bool executeBatchCommand(std::vector<string> command);
 
     int executeQuery(std::string command);
 
-    int setDb(std::string dbName);
-
-
-
 private:
-      int callback(void *NotUsed, int argc, char **argv, char **szColName);
     bool  _autoCommit;
     DisplayManager *_manager;
+    string _dbName;
 };
 
 

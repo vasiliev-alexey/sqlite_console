@@ -6,5 +6,5 @@
 #include "ConsoleDisplayManager.h"
 
 void ConsoleDisplayManager::outputData(std::string result) {
-    std::cout <<  result << std::endl;
+    std::cout << "Result:"<<  result << std::endl;
 }
