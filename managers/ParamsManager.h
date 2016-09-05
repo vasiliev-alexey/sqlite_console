@@ -16,11 +16,12 @@ public:
     ~ParamsManager();
 private:
     vector<string> convertParamToVector(char **pString, size_t size);
-    bool checkParam(vector<string> params);
+
     bool _isValid;
     map<string, string> paramHolder;
     std::map<string, string> convertToMap(vector<string> param);
 
+    bool checkParamConsistance();
 };
 
 #endif //SQLLITE_CONSOLE_UTILS_H

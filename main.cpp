@@ -14,13 +14,13 @@ using namespace std;
 
 
 int main(int argc, char *argv[]) {
-    std::cout << "Program started" << std::endl;
+    fprintf(stdout,  "Обработка запроса начата\n" );
     ParamsManager u(argc, argv);
     DisplayManager *dpm;
     CLog::SetLevel(CLog::Debug);
 
     if (!u.isParamValid()) {
-        std::cout << "Ошибочные пераметры. Работа программы прекращена" << std::endl;
+        fprintf(stderr, "Ошибочные пераметры. Работа программы прекращена\n" );
         return 1;
     }
     vector<string> instructions;
@@ -52,9 +52,9 @@ int main(int argc, char *argv[]) {
 
     DBManager dbm(dpm, dbName, true);
 
-    dbm.executeBatchCommand(instructions);
+    dbm.executeQuery(instructions);
 
-    std::cout << "Успешное завершение работы программы" << std::endl;
+    fprintf(stdout, "Успешное завершение работы программы\n");
     return 0;
 }
 

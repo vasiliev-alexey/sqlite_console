@@ -26,6 +26,19 @@ bool FileManager::checkFileExists() {
     }
 }
 
+bool FileManager::checkFileExists(string fileName) {
+    if (FILE *file = fopen(fileName.c_str(), "r")) {
+        fclose(file);
+        return true;
+    } else {
+
+        return false;
+    }
+}
+
+
+
+
 std::vector<string> FileManager::readInstructions() {
     vector<string> result;
     std::string line;
@@ -35,5 +48,5 @@ std::vector<string> FileManager::readInstructions() {
         CLog::Write(CLog::Debug, "Read instr:" + line);
     }
     infile.close();
-    return vector<string>();
+    return result;
 };

@@ -13,17 +13,14 @@ class DBManager {
 public:
 
     DBManager(DisplayManager *manager , string dbName , bool autoCommit = false);
-
-    static bool checkDbExists(std::string dbName);
-
-    bool executeBatchCommand(std::vector<string> command);
-
-    int executeQuery(std::string command);
+   int executeQuery(vector<string> command);
 
 private:
     bool  _autoCommit;
     DisplayManager *_manager;
     string _dbName;
+
+
 };
 
 

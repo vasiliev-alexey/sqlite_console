@@ -18,10 +18,14 @@ public:
     std::vector<string> readInstructions();
     bool isValid() { return  _valid ;};
 
+     bool checkFileExists();
+
+    static bool checkFileExists(string fileName);
+
 private:
     bool  _valid;
     string _fileName;
-    bool checkFileExists();
+
 };
 
 
