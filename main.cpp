@@ -1,7 +1,5 @@
 #include <iostream>
-#include <cstring>
 #include <vector>
-#include <map>
 #include "managers/ParamsManager.h"
 #include "managers/FileManager.h"
 #include "utils/CLog.h"
@@ -15,32 +13,32 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
     fprintf(stdout,  "Обработка запроса начата\n" );
-    ParamsManager u(argc, argv);
+    auto *u = new ParamsManager(argc, argv);
     DisplayManager *dpm;
     CLog::SetLevel(CLog::Debug);
 
-    if (!u.isParamValid()) {
+    if (!u ->isParamValid()) {
         fprintf(stderr, "Ошибочные пераметры. Работа программы прекращена\n" );
         return 1;
     }
     vector<string> instructions;
-    if (u.checkParamValue("-f")) {
+    if (u ->checkParamValue("-f")) {
         // набор команд пришел из файла;
-        auto fname = u.getParamValue("-f");
-        FileManager fm(fname);
-        if (!fm.isValid()) {
+        auto fname = u ->getParamValue("-f");
+        FileManager *fm = new FileManager(fname);
+        if (!fm->isValid()) {
             throw "Ошибка при работе с файлом " + fname;
         }
-        instructions = fm.readInstructions();
+        instructions = fm->readInstructions();
 
-    } else if (u.checkParamValue("-q")) {
+    } else if (u ->checkParamValue("-q")) {
         // набор комманд пришел из строки запроса
-        instructions.push_back(u.getParamValue("-q"));
+        instructions.push_back(u ->getParamValue("-q"));
     }
 
-    string outValue = u.getParamValue("-o");
+    string outValue =u ->getParamValue("-o");
     if (outValue == "FILE") {
-        string fname = u.getParamValue("-of");
+        string fname = u ->getParamValue("-of");
         dpm = new FileOutPutManager(fname);
     } else if (outValue == "CONSOLE") {
         dpm = new ConsoleDisplayManager();
@@ -48,11 +46,11 @@ int main(int argc, char *argv[]) {
         throw "Выбран не верныф формат вывода результатов";
     }
 
-    string dbName = u.getParamValue("-d");
+    string dbName = u ->getParamValue("-d");
 
-    DBManager dbm(dpm, dbName, true);
+    DBManager *dbm = new DBManager(dpm, dbName, true);
 
-    dbm.executeQuery(instructions);
+    dbm -> executeQuery(instructions);
 
     fprintf(stdout, "Успешное завершение работы программы\n");
     return 0;
