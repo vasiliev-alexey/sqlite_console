@@ -29,8 +29,9 @@ int main(int argc, char *argv[]) {
         if (!fm->isValid()) {
             throw "Ошибка при работе с файлом " + fname;
         }
-        instructions = fm->readInstructions();
 
+        instructions = fm->readInstructions();
+        delete fm;
     } else if (u ->checkParamValue("-q")) {
         // набор комманд пришел из строки запроса
         instructions.push_back(u ->getParamValue("-q"));
@@ -40,6 +41,7 @@ int main(int argc, char *argv[]) {
     if (outValue == "FILE") {
         string fname = u ->getParamValue("-of");
         dpm = new FileOutPutManager(fname);
+//        free( &fname);
     } else if (outValue == "CONSOLE") {
         dpm = new ConsoleDisplayManager();
     } else {
@@ -53,6 +55,10 @@ int main(int argc, char *argv[]) {
     dbm -> executeQuery(instructions);
 
     fprintf(stdout, "Успешное завершение работы программы\n");
+
+    delete u;
+    delete dbm;
+    delete dpm;
     return 0;
 }
 

@@ -107,11 +107,13 @@ ParamsManager::ParamsManager(int argc, char **argv) : _isValid(false) {
                 _isValid = false;
                 return;
             }
+
         }
         CLog::Write(CLog::Debug, string("convert param to  vector"));
         vector<string> tmp = convertParamToVector(argv, argc);
         CLog::Write(CLog::Debug, string("Convert param to map"));
         paramHolder = convertToMap(tmp);
+
         CLog::Write(CLog::Debug, string("validate param"));
 
         _isValid = checkParamConsistance();
@@ -139,5 +141,8 @@ bool ParamsManager::checkParamValue(string paramKey) {
 }
 
 ParamsManager::~ParamsManager() {
+
+//    delete paramHolder;
+
 }
 
