@@ -102,7 +102,7 @@ ParamsManager::ParamsManager(int argc, char **argv) : _isValid(false) {
 
             if (!checkParamCode(arg, arg2)) {
 
-                fprintf(stderr, "Параметры указаны не верно: %s\n" , arg);
+                fprintf(stderr, "Параметры указаны не верно: %s\n" , arg.c_str());
                 printHelp();
                 _isValid = false;
                 return;
